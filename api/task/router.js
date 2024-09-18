@@ -1,8 +1,14 @@
 // build your `/api/tasks` router here
 const router = require('express').Router()
+const tasks = require('./model')
 
-router.use('*', (req, res, next) => {
-    res.json({ api: 'up' })
+router.get('/', (req, res, next) => {
+    tasks.find()
+        .then(task => {
+            res.json(task)
+        })
+        .catch(next)
+
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line

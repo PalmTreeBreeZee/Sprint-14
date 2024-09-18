@@ -1,8 +1,14 @@
 // build your `/api/projects` router here
 const router = require('express').Router()
+const projects = require('./model')
 
-router.use('*', (req, res, next) => {
-    res.json({ api: 'up' })
+router.get('/', (req, res, next) => {
+    projects.find()
+        .then(project => {
+            res.json(project)
+        })
+        .catch(next)
+
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
