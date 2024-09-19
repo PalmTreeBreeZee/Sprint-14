@@ -4,6 +4,11 @@ const db = require('../../data/dbConfig')
 
 function find() {
     return db('projects')
+        .select('projects_completed')
 }
 
-module.exports = { find }
+function post(project) {
+    return db('projects')
+        .insert(project)
+}
+module.exports = { find, post }

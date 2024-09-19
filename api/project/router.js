@@ -1,14 +1,19 @@
 // build your `/api/projects` router here
 const router = require('express').Router()
 const projects = require('./model')
+const { test } = require('./middleware')
 
-router.get('/', (req, res, next) => {
+router.get('/', test, (req, res, next) => {
     projects.find()
         .then(project => {
             res.json(project)
         })
         .catch(next)
 
+})
+router.post('/', (req, res, next) => {
+    projects.post(req.body)
+        .then(res.json(req.body))
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
