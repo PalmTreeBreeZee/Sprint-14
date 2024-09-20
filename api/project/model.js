@@ -4,7 +4,6 @@ const db = require('../../data/dbConfig')
 
 function find() {
     return db('projects')
-        .select('projects_completed')
 }
 
 function post(project) {
