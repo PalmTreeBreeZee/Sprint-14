@@ -22,4 +22,11 @@ async function changeToBool(req, res, next) {
     })
     next()
 }
-module.exports = { test, changeToBool } 
+
+async function validation(req, res, next) {
+    if (!req.body.project_name) {
+        res.status(400).send('Project name not found')
+    }
+    next()
+}
+module.exports = { test, changeToBool, validation } 
