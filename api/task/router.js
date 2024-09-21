@@ -1,13 +1,14 @@
 // build your `/api/tasks` router here
 const router = require('express').Router()
 const tasks = require('./model')
+const { changeBool, posting, validation } = require('./middleware')
 
-router.get('/', (req, res, next) => {
-    tasks.find()
-        .then(task => {
-            res.json(task)
-        })
-        .catch(next)
+router.get('/', changeBool, (req, res, next) => {
+
+})
+
+router.post('/', validation, posting, (req, res, next) => {
+
 
 })
 
