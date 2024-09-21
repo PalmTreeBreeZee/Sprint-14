@@ -1,16 +1,12 @@
 const { find, post } = require('./model')
 
 async function validation(req, res, next) {
-    let info = []
-    find().then(
-        resource => {
-            info.push(resource)
-        }
-    )
-    for (let x = 0; x < info.length; x++) {
-        if (info[0][x].resource_name === req.body.resource_name) {
-            return res.status(404).send('That resource name is already taken')
-        }
+    const { resource_name } = req.body
+    const existingResource = await find()
+        .where("resource_name", resource_name)
+        .first()
+    if (existingResource) {
+        return res.status(409).send('There is already one of those')
     }
     next()
 }
