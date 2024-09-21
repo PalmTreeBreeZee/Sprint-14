@@ -5,5 +5,8 @@ const db = require('../../data/dbConfig')
 function find() {
     return db('resources')
 }
-
-module.exports = { find }
+function post(resource) {
+    return db('resources')
+        .insert(resource)
+}
+module.exports = { find, post }
