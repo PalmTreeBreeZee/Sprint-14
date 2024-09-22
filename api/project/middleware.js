@@ -46,6 +46,7 @@ async function posting(req, res, next) {
 
             }
         }
+
     })
     res.send(info[(info.length - 1)])
     next()
